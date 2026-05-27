@@ -1,0 +1,25 @@
+{
+  "visual": {
+    "name": "barrasCategorizadas",
+    "displayName": "Barras Categorizadas",
+    "guid": "barrasCategorizadasA1B2C3D4E5F6",
+    "visualClassName": "Visual",
+    "version": "1.0.0.0",
+    "description": "Visual de barras horizontais por categoria com personalizacao completa: cor unica (com fx para DAX dinamico) ou cor por categoria, largura ajustavel da barra, ordenacao configuravel, rotulos posicionaveis (dentro/fora/centro com auto-contraste), eixo X com minimo/maximo automatico ou manual, formatos de numero (decimal, percentual, monetario, abreviacao mil/mi/bi), categoria com fonte/tamanho/cor editaveis e dicas de ferramenta multi-medida.",
+    "supportUrl": "https://app.powerbi.com",
+    "gitHubUrl": ""
+  },
+  "apiVersion": "5.9.0",
+  "author": {
+    "name": "Rodrigo de Souza Barbosa",
+    "email": "rodzbar@outlook.com"
+  },
+  "assets": {
+    "icon": "assets/icon.png"
+  },
+  "externalJS": [],
+  "style": "style/visual.less",
+  "capabilities": "capabilities.json",
+  "dependencies": null,
+  "stringResources": []
+}

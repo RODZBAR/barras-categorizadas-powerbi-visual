@@ -1,0 +1,191 @@
+{
+  "privileges": [],
+  "dataRoles": [
+    { "displayName": "Categoria (eixo Y)", "name": "categoria", "kind": "Grouping" },
+    { "displayName": "Quantidade (eixo X)", "name": "quantidade", "kind": "Measure" },
+    { "displayName": "Dica de ferramenta", "name": "tooltips", "kind": "Measure" }
+  ],
+  "dataViewMappings": [
+    {
+      "conditions": [
+        {
+          "categoria": { "max": 1 },
+          "quantidade": { "max": 1 }
+        }
+      ],
+      "categorical": {
+        "categories": {
+          "for": { "in": "categoria" },
+          "dataReductionAlgorithm": { "top": { "count": 1000 } }
+        },
+        "values": {
+          "select": [
+            { "bind": { "to": "quantidade" } },
+            { "for": { "in": "tooltips" } }
+          ]
+        }
+      }
+    }
+  ],
+  "objects": {
+    "layout": {
+      "properties": {
+        "margemTopo": { "type": { "numeric": true } },
+        "margemBase": { "type": { "numeric": true } },
+        "margemEsquerda": { "type": { "numeric": true } },
+        "margemDireita": { "type": { "numeric": true } }
+      }
+    },
+    "barras": {
+      "properties": {
+        "modoCor": {
+          "type": {
+            "enumeration": [
+              { "value": "unica", "displayName": "Cor unica" },
+              { "value": "categoria", "displayName": "Cor por categoria (paleta)" }
+            ]
+          }
+        },
+        "corUnica": { "type": { "fill": { "solid": { "color": true } } } },
+        "corPorCategoria": { "type": { "fill": { "solid": { "color": true } } } },
+        "largura": { "type": { "numeric": true } },
+        "raioCanto": { "type": { "numeric": true } },
+        "ordem": {
+          "type": {
+            "enumeration": [
+              { "value": "valorDesc", "displayName": "Maior para menor" },
+              { "value": "valorAsc", "displayName": "Menor para maior" },
+              { "value": "nomeAsc", "displayName": "A para Z" },
+              { "value": "nomeDesc", "displayName": "Z para A" },
+              { "value": "dados", "displayName": "Ordem dos dados" }
+            ]
+          }
+        },
+        "exibirBorda": { "type": { "bool": true } },
+        "corBorda": { "type": { "fill": { "solid": { "color": true } } } },
+        "espessuraBorda": { "type": { "numeric": true } }
+      }
+    },
+    "rotulos": {
+      "properties": {
+        "exibir": { "type": { "bool": true } },
+        "posicao": {
+          "type": {
+            "enumeration": [
+              { "value": "foraFim", "displayName": "Fora (apos a barra)" },
+              { "value": "dentroFim", "displayName": "Dentro (fim da barra)" },
+              { "value": "dentroInicio", "displayName": "Dentro (inicio da barra)" },
+              { "value": "centro", "displayName": "Centro da barra" }
+            ]
+          }
+        },
+        "contrasteAuto": { "type": { "bool": true } },
+        "fontFamily": { "type": { "formatting": { "fontFamily": true } } },
+        "fontSize": { "type": { "formatting": { "fontSize": true } } },
+        "fontBold": { "type": { "bool": true } },
+        "fontItalic": { "type": { "bool": true } },
+        "fontUnderline": { "type": { "bool": true } },
+        "cor": { "type": { "fill": { "solid": { "color": true } } } },
+        "tipoFormato": {
+          "type": {
+            "enumeration": [
+              { "value": "auto", "displayName": "Automatico" },
+              { "value": "decimal", "displayName": "Decimal" },
+              { "value": "inteiro", "displayName": "Inteiro" },
+              { "value": "percentualFracao", "displayName": "Percentual (fracao 0-1)" },
+              { "value": "percentual", "displayName": "Percentual (ja em %)" },
+              { "value": "moedaBRL", "displayName": "Moeda (R$)" },
+              { "value": "moedaUSD", "displayName": "Moeda (US$)" },
+              { "value": "moedaEUR", "displayName": "Moeda (EUR)" }
+            ]
+          }
+        },
+        "casasDecimais": { "type": { "numeric": true } },
+        "abreviar": { "type": { "bool": true } },
+        "limiarAbreviar": { "type": { "numeric": true } },
+        "prefixo": { "type": { "text": true } },
+        "sufixo": { "type": { "text": true } }
+      }
+    },
+    "categoria": {
+      "properties": {
+        "exibir": { "type": { "bool": true } },
+        "exibirLinha": { "type": { "bool": true } },
+        "corLinha": { "type": { "fill": { "solid": { "color": true } } } },
+        "espessuraLinha": { "type": { "numeric": true } },
+        "fontFamily": { "type": { "formatting": { "fontFamily": true } } },
+        "fontSize": { "type": { "formatting": { "fontSize": true } } },
+        "fontBold": { "type": { "bool": true } },
+        "fontItalic": { "type": { "bool": true } },
+        "fontUnderline": { "type": { "bool": true } },
+        "cor": { "type": { "fill": { "solid": { "color": true } } } },
+        "larguraMaxima": { "type": { "numeric": true } }
+      }
+    },
+    "eixoX": {
+      "properties": {
+        "exibir": { "type": { "bool": true } },
+        "exibirLinha": { "type": { "bool": true } },
+        "corLinha": { "type": { "fill": { "solid": { "color": true } } } },
+        "espessuraLinha": { "type": { "numeric": true } },
+        "fontFamily": { "type": { "formatting": { "fontFamily": true } } },
+        "fontSize": { "type": { "formatting": { "fontSize": true } } },
+        "fontBold": { "type": { "bool": true } },
+        "fontItalic": { "type": { "bool": true } },
+        "fontUnderline": { "type": { "bool": true } },
+        "cor": { "type": { "fill": { "solid": { "color": true } } } },
+        "minimoAuto": { "type": { "bool": true } },
+        "minimo": { "type": { "numeric": true } },
+        "maximoAuto": { "type": { "bool": true } },
+        "maximo": { "type": { "numeric": true } },
+        "passo": { "type": { "numeric": true } },
+        "tipoFormato": {
+          "type": {
+            "enumeration": [
+              { "value": "auto", "displayName": "Automatico" },
+              { "value": "decimal", "displayName": "Decimal" },
+              { "value": "inteiro", "displayName": "Inteiro" },
+              { "value": "percentualFracao", "displayName": "Percentual (fracao 0-1)" },
+              { "value": "percentual", "displayName": "Percentual (ja em %)" },
+              { "value": "moedaBRL", "displayName": "Moeda (R$)" },
+              { "value": "moedaUSD", "displayName": "Moeda (US$)" },
+              { "value": "moedaEUR", "displayName": "Moeda (EUR)" }
+            ]
+          }
+        },
+        "casasDecimais": { "type": { "numeric": true } },
+        "abreviar": { "type": { "bool": true } },
+        "prefixo": { "type": { "text": true } },
+        "sufixo": { "type": { "text": true } },
+        "exibirGrid": { "type": { "bool": true } },
+        "corGrid": { "type": { "fill": { "solid": { "color": true } } } },
+        "espessuraGrid": { "type": { "numeric": true } },
+        "tipoLinhaGrid": {
+          "type": {
+            "enumeration": [
+              { "value": "solid", "displayName": "Solida" },
+              { "value": "dash", "displayName": "Tracejada" },
+              { "value": "dot", "displayName": "Pontilhada" }
+            ]
+          }
+        }
+      }
+    },
+    "tooltip": {
+      "properties": {
+        "exibir": { "type": { "bool": true } },
+        "incluirCategoria": { "type": { "bool": true } },
+        "incluirValor": { "type": { "bool": true } }
+      }
+    }
+  },
+  "supportsHighlight": true,
+  "tooltips": {
+    "supportedTypes": {
+      "default": true,
+      "canvas": true
+    },
+    "roles": ["tooltips"]
+  },
+  "supportsLandingPage": false
+}
