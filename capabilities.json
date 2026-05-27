@@ -119,7 +119,16 @@
         "fontItalic": { "type": { "bool": true } },
         "fontUnderline": { "type": { "bool": true } },
         "cor": { "type": { "fill": { "solid": { "color": true } } } },
-        "larguraMaxima": { "type": { "numeric": true } }
+        "larguraMaxima": { "type": { "numeric": true } },
+        "alinhamento": {
+          "type": {
+            "enumeration": [
+              { "value": "esquerda", "displayName": "Esquerda" },
+              { "value": "centro", "displayName": "Centro" },
+              { "value": "direita", "displayName": "Direita" }
+            ]
+          }
+        }
       }
     },
     "eixoX": {

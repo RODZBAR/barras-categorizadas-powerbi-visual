@@ -46,6 +46,12 @@ const TIPOS_LINHA_GRID: powerbi.IEnumMember[] = [
     { value: "dot", displayName: "Pontilhada" }
 ];
 
+const ALINHAMENTOS_CATEGORIA: powerbi.IEnumMember[] = [
+    { value: "esquerda", displayName: "Esquerda" },
+    { value: "centro", displayName: "Centro" },
+    { value: "direita", displayName: "Direita" }
+];
+
 function numero(name: string, displayName: string, valor: number, min: number, max: number): formattingSettings.NumUpDown {
     return new formattingSettings.NumUpDown({
         name,
@@ -157,12 +163,13 @@ class CategoriaCard extends Card {
     fontUnderline = toggle("fontUnderline", "Sublinhado", false);
     cor = cor("cor", "Cor do texto", "#374151");
     larguraMaxima = numero("larguraMaxima", "Largura maxima (px)", 140, 30, 600);
+    alinhamento = dropdown("alinhamento", "Alinhamento", ALINHAMENTOS_CATEGORIA, 2);
     name = "categoria";
     displayName = "Categoria (eixo Y)";
     slices = [
         this.exibir, this.exibirLinha, this.corLinha, this.espessuraLinha,
         this.fontFamily, this.fontSize, this.fontBold, this.fontItalic, this.fontUnderline,
-        this.cor, this.larguraMaxima
+        this.cor, this.larguraMaxima, this.alinhamento
     ];
 }
 

@@ -305,6 +305,9 @@ export class Visual implements IVisual {
         const valoresArr = barras.map(b => b.valor);
         let xMin = Math.min(0, ...valoresArr);
         let xMax = Math.max(0, ...valoresArr);
+        // Padding de 15% no automatico, para dar espaco aos rotulos "fora da barra"
+        if (maximoAuto && xMax > 0) xMax = xMax * 1.15;
+        if (minimoAuto && xMin < 0) xMin = xMin * 1.15;
         if (!minimoAuto) xMin = lerNumero(cfg.eixoX.minimo, xMin);
         if (!maximoAuto) xMax = lerNumero(cfg.eixoX.maximo, xMax);
         if (xMax === xMin) xMax = xMin + 1;
@@ -401,19 +404,9 @@ export class Visual implements IVisual {
                     if (b.valor >= 0) {
                         xR = xBarraFim + 4;
                         anchor = "start";
-                        if (xR + larguraTexto > plot.x1) {
-                            xR = xBarraFim - 4;
-                            anchor = "end";
-                            dentro = true;
-                        }
                     } else {
                         xR = xBarraFim - 4;
                         anchor = "end";
-                        if (xR - larguraTexto < plot.x0) {
-                            xR = xBarraFim + 4;
-                            anchor = "start";
-                            dentro = true;
-                        }
                     }
                 } else if (posicao === "dentroFim") {
                     xR = b.valor >= 0 ? xBarraFim - 4 : xBarraFim + 4;
@@ -456,6 +449,23 @@ export class Visual implements IVisual {
             const pesoCat = boldCat ? "700" : "400";
             const italicoCat = lerBool(cfg.categoria.fontItalic, false) ? "italic" : "normal";
             const sublinCat = lerBool(cfg.categoria.fontUnderline, false) ? "underline" : "none";
+            const alinhCat = lerEnum(cfg.categoria.alinhamento, "direita");
+
+            // Faixa horizontal disponivel para os rotulos: [mEsq, plot.x0 - 4]
+            const faixaIni = mEsq;
+            const faixaFim = plot.x0 - 4;
+            let xCat: number;
+            let anchorCat: string;
+            if (alinhCat === "esquerda") {
+                xCat = faixaIni;
+                anchorCat = "start";
+            } else if (alinhCat === "centro") {
+                xCat = (faixaIni + faixaFim) / 2;
+                anchorCat = "middle";
+            } else {
+                xCat = faixaFim;
+                anchorCat = "end";
+            }
 
             for (const b of barras) {
                 const yBarra = escalaY(b.categoriaTexto);
@@ -463,9 +473,9 @@ export class Visual implements IVisual {
                 const yCentro = yBarra + alturaBarra / 2;
                 const textoTrunc = truncarTexto(b.categoriaTexto, larguraMaxCat, familyCat, sizeCat, boldCat);
                 const tNode = this.gRoot.append("text")
-                    .attr("x", plot.x0 - 6)
+                    .attr("x", xCat)
                     .attr("y", yCentro)
-                    .attr("text-anchor", "end")
+                    .attr("text-anchor", anchorCat)
                     .attr("dominant-baseline", "central")
                     .attr("font-family", familyCat)
                     .attr("font-size", sizeCat)
